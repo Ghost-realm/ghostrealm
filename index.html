@@ -1,8 +1,72 @@
-<html>
-</head>
-<title>Ghost</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghost's Games</title>
+    <!-- Add any CSS links or stylesheets here -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Add styles for the game here */
+        #guessing-game {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<div>this is for test !</div>
+    <header>
+        <h1>Welcome to Ghost's Games</h1>
+        <!-- Add any navigation links here -->
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>About Ghost's Games</h2>
+            <p>Welcome to Ghost's Games! We provide a collection of fun and engaging games for all ages.</p>
+        </section>
+
+        <section>
+            <h2>Our Games</h2>
+            <ul>
+                <li><a href="#">Game 1</a></li>
+                <li><a href="#">Game 2</a></li>
+                <li><a href="#">Game 3</a></li>
+                <!-- Add more games as needed -->
+            </ul>
+        </section>
+
+        <section id="guessing-game">
+            <h2>Guessing Game</h2>
+            <p>Can you guess the number Ghost is thinking of between 1 and 10?</p>
+            <input type="text" id="guess-input">
+            <button onclick="checkGuess()">Submit Guess</button>
+            <p id="result"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Ghost's Games. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Add JavaScript for the guessing game here
+        function checkGuess() {
+            var guess = document.getElementById("guess-input").value;
+            var randomNumber = Math.floor(Math.random() * 10) + 1; // Generate random number between 1 and 10
+            if (guess == randomNumber) {
+                document.getElementById("result").innerHTML = "Congratulations! You guessed the number correctly!";
+            } else {
+                document.getElementById("result").innerHTML = "Sorry, try again!";
+            }
+        }
+    </script>
 </body>
 </html>
