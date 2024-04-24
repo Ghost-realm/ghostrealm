@@ -7,22 +7,27 @@
     <!-- Add any CSS links or stylesheets here -->
     <style>
         body {
-            background-color: #111; /* Dark background color */
+            background-color: #000; /* Dark background color */
             font-family: 'Courier New', Courier, monospace; /* Futuristic font */
             color: #00ff00; /* Green text color */
             padding: 0;
             margin: 0;
+            overflow-x: hidden; /* Hide horizontal scrollbar */
         }
 
         header {
             background-color: #000; /* Black header background */
             padding: 20px;
             text-align: center;
+            position: fixed;
+            width: 100%;
+            z-index: 1; /* Ensure header is above other content */
         }
 
         h1 {
             margin: 0;
             color: #00ff00; /* Green text color */
+            font-size: 32px;
         }
 
         nav ul {
@@ -46,7 +51,7 @@
         }
 
         main {
-            padding: 20px;
+            padding: 80px 20px; /* Add space for the fixed header */
             text-align: center;
         }
 
@@ -57,6 +62,8 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
             margin-top: 20px;
             color: #00ff00; /* Green text color */
+            overflow: hidden; /* Hide overflow content */
+            position: relative; /* Position for glitch effect */
         }
 
         button {
@@ -66,10 +73,43 @@
             padding: 10px 20px;
             cursor: pointer;
             border-radius: 5px;
+            outline: none; /* Remove button outline */
         }
 
         button:hover {
             background-color: #009900; /* Darker green on hover */
+        }
+
+        .terminal-text {
+            overflow: hidden;
+            white-space: nowrap;
+            margin: 0 auto;
+            border-right: 2px solid #00ff00; /* Blinking cursor effect */
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00ff00; }
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            10% { transform: translate(-5px, 5px); }
+            20% { transform: translate(5px, -5px); }
+            30% { transform: translate(-5px, 5px); }
+            40% { transform: translate(5px, -5px); }
+            50% { transform: translate(-5px, 5px); }
+            60% { transform: translate(5px, -5px); }
+            70% { transform: translate(-5px, 5px); }
+            80% { transform: translate(5px, -5px); }
+            90% { transform: translate(-5px, 5px); }
+            100% { transform: translate(0); }
         }
     </style>
 </head>
@@ -105,8 +145,8 @@
 
         <div class="joke-container">
             <h2>Enjoy Some Hacker Jokes</h2>
+            <p class="terminal-text" id="joke"></p>
             <button onclick="showJoke()">Get Joke</button>
-            <p id="joke"></p>
         </div>
     </main>
 
@@ -123,6 +163,15 @@
                     document.getElementById('joke').textContent = data.setup + " " + data.punchline;
                 });
         }
+
+        // Glitch effect for terminal text
+        const terminalText = document.querySelector('.terminal-text');
+        setInterval(() => {
+            terminalText.style.animation = 'none';
+            setTimeout(() => {
+                terminalText.style.animation = 'glitch 0.1s infinite';
+            }, 100);
+        }, 3000);
     </script>
 </body>
 </html>
