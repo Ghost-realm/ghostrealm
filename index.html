@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghost's Hacker Zone</title>
+    <title>Ghost Realm</title>
     <!-- Add any CSS links or stylesheets here -->
     <style>
         body {
@@ -12,7 +12,6 @@
             color: #00ff00; /* Green text color */
             padding: 0;
             margin: 0;
-            overflow-x: hidden; /* Hide horizontal scrollbar */
         }
 
         header {
@@ -51,8 +50,11 @@
         }
 
         main {
-            padding: 80px 20px; /* Add space for the fixed header */
+            padding: 120px 20px 20px; /* Add space for the fixed header and footer */
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .joke-container {
@@ -62,8 +64,8 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
             margin-top: 20px;
             color: #00ff00; /* Green text color */
-            overflow: hidden; /* Hide overflow content */
-            position: relative; /* Position for glitch effect */
+            max-width: 600px; /* Limit width for a compact layout */
+            width: 100%; /* Ensure full width within the container */
         }
 
         button {
@@ -80,42 +82,19 @@
             background-color: #009900; /* Darker green on hover */
         }
 
-        .terminal-text {
-            overflow: hidden;
-            white-space: nowrap;
-            margin: 0 auto;
-            border-right: 2px solid #00ff00; /* Blinking cursor effect */
-            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        .image-container {
+            margin-top: 20px;
         }
 
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #00ff00; }
-        }
-
-        @keyframes glitch {
-            0% { transform: translate(0); }
-            10% { transform: translate(-5px, 5px); }
-            20% { transform: translate(5px, -5px); }
-            30% { transform: translate(-5px, 5px); }
-            40% { transform: translate(5px, -5px); }
-            50% { transform: translate(-5px, 5px); }
-            60% { transform: translate(5px, -5px); }
-            70% { transform: translate(-5px, 5px); }
-            80% { transform: translate(5px, -5px); }
-            90% { transform: translate(-5px, 5px); }
-            100% { transform: translate(0); }
+        .image-container img {
+            max-width: 100%;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to Ghost's Hacker Zone</h1>
+        <h1>Welcome to Ghost Realm</h1>
         <!-- Add any navigation links here -->
         <nav>
             <ul>
@@ -129,29 +108,25 @@
 
     <main>
         <section>
-            <h2>About Ghost's Hacker Zone</h2>
-            <p>Welcome to Ghost's Hacker Zone! Get ready to dive into the world of hacking and cybersecurity.</p>
+            <h2>About Ghost Realm</h2>
+            <p>Welcome to Ghost Realm! Get ready to dive into the world of hacking and cybersecurity.</p>
         </section>
 
         <section>
-            <h2>Our Games</h2>
-            <ul>
-                <li><a href="#">Hack the Code</a></li>
-                <li><a href="#">Terminal Adventure</a></li>
-                <li><a href="#">Cyber Defense</a></li>
-                <!-- Add more games as needed -->
-            </ul>
+            <h2>Enjoy Some Hacker Jokes</h2>
+            <div class="joke-container">
+                <p class="terminal-text" id="joke"></p>
+                <button onclick="showJoke()">Get Joke</button>
+            </div>
         </section>
 
-        <div class="joke-container">
-            <h2>Enjoy Some Hacker Jokes</h2>
-            <p class="terminal-text" id="joke"></p>
-            <button onclick="showJoke()">Get Joke</button>
+        <div class="image-container">
+            <img src="hacker_image.jpg" alt="Hacker Image">
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Ghost's Hacker Zone. All rights reserved.</p>
+    <footer style="background-color: #000; color: #00ff00; padding: 20px; text-align: center; position: fixed; bottom: 0; width: 100%;">
+        <p>&copy; 2024 Ghost's Realm. All rights reserved.</p>
     </footer>
 
     <script>
@@ -163,15 +138,6 @@
                     document.getElementById('joke').textContent = data.setup + " " + data.punchline;
                 });
         }
-
-        // Glitch effect for terminal text
-        const terminalText = document.querySelector('.terminal-text');
-        setInterval(() => {
-            terminalText.style.animation = 'none';
-            setTimeout(() => {
-                terminalText.style.animation = 'glitch 0.1s infinite';
-            }, 100);
-        }, 3000);
     </script>
 </body>
 </html>
