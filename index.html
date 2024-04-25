@@ -3,102 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SOC - IP and Hash Integrity Checker</title>
+    <title>GHOST HACKS</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>SOC - IP and Hash Integrity Checker</h1>
-    <form id="input-form">
-        <label for="input-type">Select Input Type:</label>
-        <select id="input-type">
-            <option value="ip">IP Address</option>
-            <option value="hash">Hash Value</option>
-        </select><br>
-        <label for="input-value">Enter Value:</label>
-        <input type="text" id="input-value" required><br>
-        <button type="submit">Check</button>
-    </form>
-    <div id="result-container"></div>
-
-    <!-- JavaScript -->
-    <script>
-        const form = document.getElementById('input-form');
-        const resultContainer = document.getElementById('result-container');
-
-        form.addEventListener('submit', async function(event) {
-            event.preventDefault();
-            const inputType = document.getElementById('input-type').value;
-            const inputValue = document.getElementById('input-value').value.trim();
-            resultContainer.innerHTML = '<p>Checking...</p>';
-            try {
-                const result = await checkIntegrity(inputType, inputValue);
-                displayResult(result);
-            } catch (error) {
-                resultContainer.innerHTML = `<p>Error: ${error.message}</p>`;
-            }
-        });
-
-        async function checkIntegrity(type, value) {
-            const virusTotalResponse = await fetch(`https://www.virustotal.com/api/v3/${type}s/${encodeURIComponent(value)}`, {
-                headers: {
-                    'x-apikey': 'affecd25b067a836e0070ad56c1720cd59308dfd6f05c463f287abee0351b828'
-                }
-            });
-            if (!virusTotalResponse.ok) {
-                throw new Error('Failed to check with VirusTotal');
-            }
-            const virusTotalData = await virusTotalResponse.json();
-
-            const abusedIPResponse = await fetch(`https://api.abuseipdb.com/api/v2/check-${type}?${type}=${encodeURIComponent(value)}`, {
-                headers: {
-                    'Key': '3a9c3c6dc846e38017064e8a0004109638533bde1d65ca8f2fc01d5d0bff3c75d47287f7e18ddfb9'
-                }
-            });
-            if (!abusedIPResponse.ok) {
-                throw new Error('Failed to check with Abused IP');
-            }
-            const abusedIPData = await abusedIPResponse.json();
-
-            const metadefenderResponse = await fetch(`https://api.metadefender.com/v4/${type}/${encodeURIComponent(value)}`, {
-                headers: {
-                    'apikey': '8fcde75f2f9ce1a25aab045f52a27223'
-                }
-            });
-            if (!metadefenderResponse.ok) {
-                throw new Error('Failed to check with Metadefender');
-            }
-            const metadefenderData = await metadefenderResponse.json();
-
-            const ipvoidResponse = await fetch(`https://www.ipvoid.com/${type}-blacklist-check/api/${encodeURIComponent(value)}/`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-            if (!ipvoidResponse.ok) {
-                throw new Error('Failed to check with IPVoid');
-            }
-            const ipvoidData = await ipvoidResponse.json();
-
-            return {
-                virusTotal: virusTotalData,
-                abusedIP: abusedIPData.data,
-                metadefender: metadefenderData,
-                ipvoid: ipvoidData
-            };
-        }
-
-        function displayResult(result) {
-            let html = '<h2>Result</h2>';
-            html += '<h3>VirusTotal</h3>';
-            html += `<pre>${JSON.stringify(result.virusTotal, null, 2)}</pre>`;
-            html += '<h3>Abused IP</h3>';
-            html += `<pre>${JSON.stringify(result.abusedIP, null, 2)}</pre>`;
-            html += '<h3>Metadefender</h3>';
-            html += `<pre>${JSON.stringify(result.metadefender, null, 2)}</pre>`;
-            html += '<h3>IPVoid</h3>';
-            html += `<pre>${JSON.stringify(result.ipvoid, null, 2)}</pre>`;
-            resultContainer.innerHTML = html;
-        }
-    </script>
+    <header>
+        <h1>Welcome to GHOST HACKS</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#jokes">Jokes</a></li>
+            <li><a href="#games">Games</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <!-- Add more sections as needed -->
+        </ul>
+    </nav>
+    <main>
+        <section id="jokes">
+            <h2>Jokes</h2>
+            <div class="joke">
+                <p>Why was the JavaScript developer sad?</p>
+                <p>Because he didn't know how to 'null' his feelings.</p>
+            </div>
+            <!-- Add more jokes -->
+        </section>
+        <section id="games">
+            <h2>Games</h2>
+            <div class="game">
+                <h3>Hack the Code</h3>
+                <p>Can you crack the code and escape the virtual prison?</p>
+                <a href="game/hackthecode.html">Play Now</a>
+            </div>
+            <!-- Add more games -->
+        </section>
+        <section id="tools">
+            <h2>Tools</h2>
+            <div class="tool">
+                <h3>Encryptor</h3>
+                <p>Encrypt your messages with our cutting-edge encryption tool.</p>
+                <a href="tools/encryptor.html">Encrypt Now</a>
+            </div>
+            <!-- Add more tools -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 GHOST HACKS</p>
+    </footer>
 </body>
 </html>
