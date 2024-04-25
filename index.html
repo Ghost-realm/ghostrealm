@@ -3,119 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghost Realm</title>
-    <style>
-        /* Add your CSS styles here */
-        /* For simplicity, you can also link an external CSS file */
-    </style>
+    <title>HackNet: Unleash Your Inner Hacker</title>
+    <!-- Add any CSS stylesheets or fonts here -->
 </head>
 <body>
-    <header>
-        <h1>Welcome to Ghost Realm!</h1>
-    </header>
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-    <main>
-        <section id="weather">
-            <h2>Current Weather</h2>
-            <div id="weather-info"></div>
-        </section>
+    <!-- Home Page -->
+    <section id="home">
+        <h1>Welcome to HackNet</h1>
+        <p>Become a master hacker and protect the digital world!</p>
+        <!-- Real-time Hack-O-Meter -->
+        <div id="hack-o-meter">Real-time Hack-O-Meter: <span id="hack-count">0</span></div>
+        <!-- Latest Hacking News -->
+        <div id="latest-news">
+            <h2>Latest Hacking News</h2>
+            <ul id="news-list">
+                <!-- Populate this list dynamically using JavaScript -->
+            </ul>
+        </div>
+        <!-- Random Joke -->
+        <div id="random-joke">
+            <h2>Random Joke</h2>
+            <p id="joke-text">Loading joke...</p>
+        </div>
+    </section>
 
-        <section id="news">
-            <h2>Latest News</h2>
-            <div id="news-articles"></div>
-        </section>
+    <!-- About Page -->
+    <section id="about">
+        <h2>About HackNet</h2>
+        <p>Learn about our mission and the team behind HackNet.</p>
+        <h3>Hacker Ethos</h3>
+        <p>Explore the principles of ethical hacking.</p>
+    </section>
 
-        <section id="countries">
-            <h2>Country Information</h2>
-            <div id="country-info"></div>
-        </section>
+    <!-- Services Page -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li>Hacking Tools</li>
+            <li>Security Audits</li>
+            <li>Penetration Testing</li>
+        </ul>
+    </section>
 
-        <section id="images">
-            <h2>Image Gallery</h2>
-            <div id="image-gallery"></div>
-        </section>
+    <!-- Blog Page -->
+    <section id="blog">
+        <h2>Our Blog</h2>
+        <ul id="blog-posts">
+            <!-- Populate this list dynamically using JavaScript -->
+        </ul>
+    </section>
 
-        <section id="space">
-            <h2>Space Exploration</h2>
-            <div id="space-info"></div>
-        </section>
-    </main>
+    <!-- Contact Page -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
 
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 Ghost Realm. All rights reserved.</p>
+        <p>&copy; 2024 HackNet. All rights reserved.</p>
+        <!-- Add links to privacy policy and terms of service -->
     </footer>
 
+    <!-- JavaScript to fetch and display random joke -->
     <script>
-        // Add your JavaScript code here to fetch data from APIs and update the HTML content
-        
-        // Example: Fetch weather data from OpenWeatherMap API
-        fetch('https://api.openweathermap.org/data/2.5/weather?q=YourCity&appid=YourOpenWeatherMapAPIKey')
+        // Fetch random joke from JokeAPI
+        fetch('https://v2.jokeapi.dev/joke/Any')
             .then(response => response.json())
             .then(data => {
-                const weatherInfo = document.getElementById('weather-info');
-                weatherInfo.innerHTML = `
-                    <p>Temperature: ${data.main.temp}</p>
-                    <p>Description: ${data.weather[0].description}</p>
-                `;
+                const jokeElement = document.getElementById('joke-text');
+                if (data.type === 'single') {
+                    jokeElement.textContent = data.joke;
+                } else if (data.type === 'twopart') {
+                    jokeElement.textContent = `${data.setup} ${data.delivery}`;
+                } else {
+                    jokeElement.textContent = 'Failed to load joke.';
+                }
             })
-            .catch(error => console.log('Error fetching weather data:', error));
-        
-        // Example: Fetch news articles from News API
-        fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=YourNewsAPIKey')
-            .then(response => response.json())
-            .then(data => {
-                const newsArticles = document.getElementById('news-articles');
-                data.articles.slice(0, 3).forEach(article => {
-                    const articleElement = document.createElement('div');
-                    articleElement.innerHTML = `
-                        <h3>${article.title}</h3>
-                        <p>${article.description}</p>
-                        <a href="${article.url}" target="_blank">Read more</a>
-                    `;
-                    newsArticles.appendChild(articleElement);
-                });
-            })
-            .catch(error => console.log('Error fetching news data:', error));
-
-        // Example: Fetch country information from REST Countries API
-        fetch('https://restcountries.com/v3/all')
-            .then(response => response.json())
-            .then(data => {
-                const randomCountry = data[Math.floor(Math.random() * data.length)];
-                const countryInfo = document.getElementById('country-info');
-                countryInfo.innerHTML = `
-                    <p>Country: ${randomCountry.name.common}</p>
-                    <p>Population: ${randomCountry.population}</p>
-                    <p>Languages: ${Object.values(randomCountry.languages).join(', ')}</p>
-                `;
-            })
-            .catch(error => console.log('Error fetching country data:', error));
-
-        // Example: Fetch images from Pixabay API
-        fetch('https://pixabay.com/api/?key=YourPixabayAPIKey&q=nature&per_page=3')
-            .then(response => response.json())
-            .then(data => {
-                const imageGallery = document.getElementById('image-gallery');
-                data.hits.forEach(image => {
-                    const imageElement = document.createElement('img');
-                    imageElement.src = image.webformatURL;
-                    imageGallery.appendChild(imageElement);
-                });
-            })
-            .catch(error => console.log('Error fetching images:', error));
-
-        // Example: Fetch space information from NASA API
-        fetch('https://api.nasa.gov/planetary/apod?api_key=YourNASAKey')
-            .then(response => response.json())
-            .then(data => {
-                const spaceInfo = document.getElementById('space-info');
-                spaceInfo.innerHTML = `
-                    <img src="${data.url}" alt="NASA Image">
-                    <p>${data.title}</p>
-                    <p>${data.explanation}</p>
-                `;
-            })
-            .catch(error => console.log('Error fetching NASA data:', error));
+            .catch(error => {
+                console.error('Error fetching joke:', error);
+                const jokeElement = document.getElementById('joke-text');
+                jokeElement.textContent = 'Failed to load joke.';
+            });
     </script>
 </body>
 </html>
