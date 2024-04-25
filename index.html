@@ -21,20 +21,30 @@
     <main>
         <section id="jokes">
             <h2>Jokes</h2>
-            <div id="joke-container">
-                <div id="joke-text">
-                    <!-- Jokes will be displayed here -->
-                </div>
-                <button onclick="handleJoke()">New Joke</button>
+            <div class="joke" id="jokeContainer">
+                <!-- Jokes will be fetched and displayed here -->
             </div>
+            <button onclick="fetchJoke()">Get Joke</button>
+            <!-- Add more jokes -->
         </section>
         <section id="games">
             <h2>Games</h2>
             <div class="game">
                 <h3>Hack the Code</h3>
                 <p>Can you crack the code and escape the virtual prison?</p>
-                <a href="game/hackthecode.html">Play Now</a>
+                <a href="games/hackthecode.html">Play Now</a>
             </div>
+            <div class="game">
+                <h3>Hangman Game</h3>
+                <div id="hangmanGame">
+                    <a href="games/hangman.html">Play Now</a>
+                </div>
+            </div>
+            <div class="game">
+                <h3>Hangman Game</h3>
+                <div id="hangmanGame">
+                    <a href="games/hangman.html">Play Now</a>
+                </div>
             <!-- Add more games -->
         </section>
         <section id="tools">
@@ -52,23 +62,15 @@
     </footer>
 
     <script>
-        function handleJoke() {
-            const jokeText = document.getElementById('joke-text');
-            const jokeContainer = document.getElementById('joke-container');
-
-            // Check if there's a joke already displayed
-            if (jokeText.textContent !== '') {
-                // If there is, clear the joke
-                jokeText.textContent = '';
-            } else {
-                // If not, fetch a new joke
-                fetch('https://v2.jokeapi.dev/joke/Any?type=single')
-                    .then(response => response.json())
-                    .then(data => {
-                        jokeText.textContent = data.joke;
-                    })
-                    .catch(error => console.error('Error fetching joke:', error));
-            }
+        function fetchJoke() {
+            fetch('https://api.chucknorris.io/jokes/random')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('jokeContainer').innerHTML = `
+                        <p>${data.value}</p>
+                    `;
+                })
+                .catch(error => console.error('Error fetching joke:', error));
         }
     </script>
 </body>
