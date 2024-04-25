@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #wordDisplay {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hangman Game</h1>
+        <p>Guess the word by suggesting letters:</p>
+        <p id="wordDisplay">_ _ _ _ _</p>
+        <p>Attempts left: <span id="attemptsLeft">6</span></p>
+        <input type="text" id="letterInput" maxlength="1">
+        <button onclick="guessLetter()">Guess</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        const words = ["apple", "banana", "orange", "grape", "pear"];
+        let currentWord = words[Math.floor(Math.random() * words.length)];
+        let guessedWord = currentWord.replace(/[a-z]/g, "_");
+        let remainingAttempts = 6;
+
+        document.getElementById("wordDisplay").innerText = guessedWord;
+
+        function guessLetter() {
+            const letter = document.getElementById("letterInput").value.toLowerCase();
+
+            if (!letter.match(/[a-z]/)) {
+                alert("Please enter a valid letter.");
+                return;
+            }
+
+            if (guessedWord.includes(letter)) {
+                alert("You've already guessed this letter.");
+                return;
+            }
+
+            let newGuessedWord = "";
+            let correctGuess = false;
+            for (let i = 0; i < currentWord.length; i++) {
+                if (currentWord[i] === letter) {
+                    newGuessedWord += letter;
+                    correctGuess = true;
+                } else {
+                    newGuessedWord += guessedWord[i];
+                }
+            }
+
+            guessedWord = newGuessedWord;
+            document.getElementById("wordDisplay").innerText = guessedWord;
+
+            if (guessedWord === currentWord) {
+                document.getElementById("result").innerText = "Congratulations! You guessed the word!";
+                document.getElementById("result").style.color = "green";
+                document.getElementById("letterInput").disabled = true;
+            } else {
+                if (!correctGuess) {
+                    remainingAttempts--;
+                    document.getElementById("attemptsLeft").innerText = remainingAttempts;
+                    if (remainingAttempts === 0) {
+                        document.getElementById("result").innerText = "You've run out of attempts. The word was '" + currentWord + "'.";
+                        document.getElementById("result").style.color = "red";
+                        document.getElementById("letterInput").disabled = true;
+                    }
+                }
+            }
+
+            document.getElementById("letterInput").value = "";
+        }
+    </script>
+</body>
+</html>
