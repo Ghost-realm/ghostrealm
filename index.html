@@ -25,7 +25,7 @@
         <h1>Welcome to HackNet</h1>
         <p>Become a master hacker and protect the digital world!</p>
         <!-- Real-time Hack-O-Meter -->
-        <div id="hack-o-meter">Real-time Hack-O-Meter: <span id="hack-count">0</span></div>
+        <div id="hack-o-meter">Real-time Hack-O-Meter: <span id="hack-count" class="success">0</span></div>
         <!-- Latest Hacking News -->
         <div id="latest-news">
             <h2>Latest Hacking News</h2>
@@ -33,9 +33,9 @@
                 <!-- Populate this list dynamically using JavaScript -->
             </ul>
         </div>
-        <!-- Random Dark Humor Joke -->
-        <div id="dark-humor-joke">
-            <h2>Dark Humor Joke</h2>
+        <!-- Random Joke -->
+        <div id="random-joke">
+            <h2>Random Joke</h2>
             <p id="joke-text">Loading joke...</p>
             <button onclick="getDarkHumorJoke()">Get Joke</button>
         </div>
@@ -45,31 +45,55 @@
             <p id="location-text">Click the button to get your location</p>
             <button onclick="getUserLocation()">Get Location</button>
         </div>
+        <!-- Akinator Game -->
+        <div id="akinator-game">
+            <h2>Akinator</h2>
+            <p>Think of a character and answer the questions to see if Akinator can guess who it is!</p>
+            <button onclick="startAkinator()">Start Akinator</button>
+            <div id="akinator-question" style="display: none;"></div>
+            <div id="akinator-answer"></div>
+            <button onclick="answerAkinator('yes')">Yes</button>
+            <button onclick="answerAkinator('no')">No</button>
+            <button onclick="answerAkinator('don't know')">Don't know</button>
+        </div>
     </section>
 
     <!-- JavaScript to fetch and display dark humor joke -->
     <script>
-        function getDarkHumorJoke() {
-            fetch('https://v2.jokeapi.dev/joke/Dark')
+        let akinatorSession = null;
+
+        // Function to start the Akinator game
+        function startAkinator() {
+            fetch('https://api.akinator.com/ws/new_session?partner=1')
                 .then(response => response.json())
                 .then(data => {
-                    const jokeElement = document.getElementById('joke-text');
-                    if (data.type === 'single') {
-                        jokeElement.textContent = data.joke;
-                    } else if (data.type === 'twopart') {
-                        jokeElement.textContent = `${data.setup} ${data.delivery}`;
-                    } else {
-                        jokeElement.textContent = 'Failed to load joke.';
-                    }
+                    akinatorSession = data.parameters.identification.session;
+                    document.getElementById('akinator-question').textContent = data.parameters.step_information.question;
+                    document.getElementById('akinator-question').style.display = 'block';
                 })
                 .catch(error => {
-                    console.error('Error fetching dark humor joke:', error);
-                    const jokeElement = document.getElementById('joke-text');
-                    jokeElement.textContent = 'Failed to load joke.';
+                    console.error('Error starting Akinator:', error);
                 });
         }
 
-        // The rest of your JavaScript functions (getUserLocation, etc.)
+        // Function to answer the Akinator question
+        function answerAkinator(answer) {
+            if (!akinatorSession) {
+                console.error('Akinator session not started.');
+                return;
+            }
+            fetch(`https://api.akinator.com/ws/answer?session=${akinatorSession}&signature=${akinatorSession}&step=0&answer=${encodeURIComponent(answer)}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('akinator-question').textContent = data.parameters.step_information.question;
+                    if (data.parameters.step_information.progression >= 85) {
+                        document.getElementById('akinator-answer').textContent = `Akinator guesses: ${data.parameters.step_information.answers[0].name}`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error answering Akinator question:', error);
+                });
+        }
     </script>
 </body>
 </html>
