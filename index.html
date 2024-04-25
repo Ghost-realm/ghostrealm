@@ -3,37 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Integrity Checker</title>
+    <title>SOC - IP and Hash Integrity Checker</title>
 </head>
 <body>
-    <h1>URL Integrity Checker</h1>
-    <form id="url-form">
-        <label for="url-input">Enter URL:</label>
-        <input type="text" id="url-input" required>
+    <h1>SOC - IP and Hash Integrity Checker</h1>
+    <form id="input-form">
+        <label for="input-type">Select Input Type:</label>
+        <select id="input-type">
+            <option value="ip">IP Address</option>
+            <option value="hash">Hash Value</option>
+        </select><br>
+        <label for="input-value">Enter Value:</label>
+        <input type="text" id="input-value" required><br>
         <button type="submit">Check</button>
     </form>
     <div id="result-container"></div>
 
     <!-- JavaScript -->
     <script>
-        const form = document.getElementById('url-form');
+        const form = document.getElementById('input-form');
         const resultContainer = document.getElementById('result-container');
 
         form.addEventListener('submit', async function(event) {
             event.preventDefault();
-            const url = document.getElementById('url-input').value.trim();
+            const inputType = document.getElementById('input-type').value;
+            const inputValue = document.getElementById('input-value').value.trim();
             resultContainer.innerHTML = '<p>Checking...</p>';
             try {
-                const result = await checkURLIntegrity(url);
+                const result = await checkIntegrity(inputType, inputValue);
                 displayResult(result);
             } catch (error) {
                 resultContainer.innerHTML = `<p>Error: ${error.message}</p>`;
             }
         });
 
-        async function checkURLIntegrity(url) {
-            // Call VirusTotal API
-            const virusTotalResponse = await fetch(`https://www.virustotal.com/api/v3/urls/${encodeURIComponent(url)}`, {
+        async function checkIntegrity(type, value) {
+            const virusTotalResponse = await fetch(`https://www.virustotal.com/api/v3/${type}s/${encodeURIComponent(value)}`, {
                 headers: {
                     'x-apikey': 'affecd25b067a836e0070ad56c1720cd59308dfd6f05c463f287abee0351b828'
                 }
@@ -43,8 +48,7 @@
             }
             const virusTotalData = await virusTotalResponse.json();
 
-            // Call Abused IP API
-            const abusedIPResponse = await fetch(`https://api.abuseipdb.com/api/v2/check?url=${encodeURIComponent(url)}`, {
+            const abusedIPResponse = await fetch(`https://api.abuseipdb.com/api/v2/check-${type}?${type}=${encodeURIComponent(value)}`, {
                 headers: {
                     'Key': '3a9c3c6dc846e38017064e8a0004109638533bde1d65ca8f2fc01d5d0bff3c75d47287f7e18ddfb9'
                 }
@@ -54,8 +58,7 @@
             }
             const abusedIPData = await abusedIPResponse.json();
 
-            // Call Metadefender API
-            const metadefenderResponse = await fetch(`https://api.metadefender.com/v4/url/${encodeURIComponent(url)}`, {
+            const metadefenderResponse = await fetch(`https://api.metadefender.com/v4/${type}/${encodeURIComponent(value)}`, {
                 headers: {
                     'apikey': '8fcde75f2f9ce1a25aab045f52a27223'
                 }
@@ -65,8 +68,7 @@
             }
             const metadefenderData = await metadefenderResponse.json();
 
-            // Call IPVoid API
-            const ipvoidResponse = await fetch(`https://www.ipvoid.com/ip-blacklist-check/api/${encodeURIComponent(url)}/`, {
+            const ipvoidResponse = await fetch(`https://www.ipvoid.com/${type}-blacklist-check/api/${encodeURIComponent(value)}/`, {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json'
@@ -78,7 +80,7 @@
             const ipvoidData = await ipvoidResponse.json();
 
             return {
-                virusTotal: virusTotalData.data.attributes.last_analysis_stats,
+                virusTotal: virusTotalData,
                 abusedIP: abusedIPData.data,
                 metadefender: metadefenderData,
                 ipvoid: ipvoidData
@@ -88,30 +90,15 @@
         function displayResult(result) {
             let html = '<h2>Result</h2>';
             html += '<h3>VirusTotal</h3>';
-            html += `<p>Detection ratio: ${result.virusTotal.harmless}/${result.virusTotal.malicious}</p>`;
+            html += `<pre>${JSON.stringify(result.virusTotal, null, 2)}</pre>`;
             html += '<h3>Abused IP</h3>';
-            html += '<ul>';
-            result.abusedIP.forEach(item => {
-                html += `<li>${item.ipAddress}: ${item.abuseConfidenceScore}% confidence</li>`;
-            });
-            html += '</ul>';
+            html += `<pre>${JSON.stringify(result.abusedIP, null, 2)}</pre>`;
             html += '<h3>Metadefender</h3>';
-            html += `<p>Scan result: ${result.metadefender.scan_results.scan_all_result_i}</p>`;
+            html += `<pre>${JSON.stringify(result.metadefender, null, 2)}</pre>`;
             html += '<h3>IPVoid</h3>';
-            html += `<p>Blacklist status: ${result.ipvoid.blacklists}</p>`;
+            html += `<pre>${JSON.stringify(result.ipvoid, null, 2)}</pre>`;
             resultContainer.innerHTML = html;
         }
     </script>
-    <style>
-        *
-        {
-            padding:0px;
-            margin:0px;
-        }
-        background
-        {
-            background-color:blue;
-        }
-        </style>
 </body>
 </html>
