@@ -3,73 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GHOST HACKS</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>VirusTotal URL Scanner</title>
 </head>
 <body>
-    <header>
-        <h1>Welcome to GHOST HACKS</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="#jokes">Jokes</a></li>
-            <li><a href="#games">Games</a></li>
-            <li><a href="#tools">Tools</a></li>
-            <!-- Add more sections as needed -->
-        </ul>
-    </nav>
-    <main>
-        <section id="jokes">
-            <h2>Jokes</h2>
-            <div class="joke" id="jokeContainer">
-                <!-- Jokes will be fetched and displayed here -->
-            </div>
-            <button onclick="fetchJoke()">Get Joke</button>
-            <!-- Add more jokes -->
-        </section>
-        <section id="games">
-            <h2>Games</h2>
-            <div class="game">
-                <h3>Hack the Code</h3>
-                <p>Can you crack the code and escape the virtual prison?</p>
-                <a href="games/hackthecode.html">Play Now</a>
-            </div>
-            <div class="game">
-                <h3>Hangman Game</h3>
-                <div id="hangmanGame">
-                    <a href="game/hangman.html">Play Now</a>
-                </div>
-                <div class="game">
-                <h3>Hangman Game</h3>
-                <div id="hangmanGame">
-                    <a href="game/memorygame.html">Play Now</a>
-                </div>
-            <!-- Add more games -->
-        </section>
-        <section id="tools">
-            <h2>Tools</h2>
-            <div class="tool">
-                <h3>Encryptor</h3>
-                <p>Encrypt your messages with our cutting-edge encryption tool.</p>
-                <a href="tools/encryptor.html">Encrypt Now</a>
-            </div>
-            <!-- Add more tools -->
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2024 GHOST HACKS</p>
-    </footer>
+    <h1>VirusTsotal URL Scanner</h1>
+    <form id="urlScanForm">
+        <label for="urlInput">Enter a URL to scan:</label>
+        <input type="text" id="urlInput" name="url">
+        <button type="submit">Scan URL</button>
+    </form>
+    <div id="urlScanResult"></div>
 
     <script>
-        function fetchJoke() {
-            fetch('https://api.chucknorris.io/jokes/random')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('jokeContainer').innerHTML = `
-                        <p>${data.value}</p>
-                    `;
+        document.getElementById('urlScanForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const urlInput = document.getElementById('urlInput');
+            const url = urlInput.value.trim();
+            if (!url) {
+                alert('Please enter a valid URL.');
+                return;
+            }
+
+            const options = {
+                method: 'POST',
+                headers: {
+                    accept: 'application/json',
+                    'content-type': 'application/x-www-form-urlencoded',
+                    'x-apikey': 'affecd25b067a836e0070ad56c1720cd59308dfd6f05c463f287abee0351b828'
+                },
+                body: new URLSearchParams({
+                    'url': url
                 })
-                .catch(error => console.error('Error fetching joke:', error));
+            };
+
+            try {
+                const response = await fetch('https://www.virustotal.com/api/v3/urls', options);
+                const data = await response.json();
+                displayScanResult(data);
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            }
+        });
+
+        function displayScanResult(data) {
+            const urlScanResultDiv = document.getElementById('urlScanResult');
+            urlScanResultDiv.innerHTML = `<strong>Scan Result:</strong> ${JSON.stringify(data, null, 2)}`;
         }
     </script>
 </body>
