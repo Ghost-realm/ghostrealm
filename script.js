@@ -6,7 +6,7 @@ document.getElementById('checkButton').addEventListener('click', function() {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            'x-apikey': 'YOUR_VIRUSTOTAL_API_KEY'
+            'x-apikey': 'affecd25b067a836e0070ad56c1720cd59308dfd6f05c463f287abee0351b828'
         }
     };
 
