@@ -6,231 +6,221 @@
     <meta name="description" content="Cybersecurity Professional | VAPT Expert | Web, Mobile, API, Network, and Cloud Penetration Testing">
     <title>Your Name - Cybersecurity Expert</title>
     <style>
-        /* Reset some styles */
+        /* General Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* Body */
         body {
             font-family: 'Courier New', monospace;
-            background: #000;
-            color: #0f0;
+            background-color: #121212;
+            color: #00FF00;
             overflow-x: hidden;
             line-height: 1.6;
-            letter-spacing: 1px;
         }
 
-        /* Glitch Text Animation */
-        @keyframes glitch {
-            0% {
-                transform: translate(2px, 2px);
-                text-shadow: 1px 1px 0 rgba(0,0,0,0.2), -1px -1px 0 rgba(0,0,0,0.2);
-            }
-            20% {
-                transform: translate(-2px, -2px);
-                text-shadow: 1px 1px 0 rgba(0,0,0,0.2), -1px -1px 0 rgba(0,0,0,0.2);
-            }
-            40% {
-                transform: translate(2px, 2px);
-                text-shadow: 1px 1px 0 rgba(0,0,0,0.2), -1px -1px 0 rgba(0,0,0,0.2);
-            }
-            60% {
-                transform: translate(-2px, -2px);
-                text-shadow: 1px 1px 0 rgba(0,0,0,0.2), -1px -1px 0 rgba(0,0,0,0.2);
-            }
-            80% {
-                transform: translate(2px, 2px);
-                text-shadow: 1px 1px 0 rgba(0,0,0,0.2), -1px -1px 0 rgba(0,0,0,0.2);
-            }
-            100% {
-                transform: translate(0, 0);
-                text-shadow: 1px 1px 0 rgba(0,0,0,0.2), -1px -1px 0 rgba(0,0,0,0.2);
-            }
-        }
-
-        /* Header and Navigation */
+        /* Header Section */
         header {
-            background: #111;
-            padding: 20px;
             position: fixed;
             width: 100%;
             top: 0;
+            padding: 15px 50px;
+            background: #000;
             z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
         }
+
         header h1 {
+            font-size: 2rem;
             color: #00FF00;
-            font-size: 2.5rem;
-            text-transform: uppercase;
-            text-align: center;
-            animation: glitch 1s infinite;
         }
+
         nav {
-            text-align: center;
-            margin-top: 20px;
+            font-size: 1.1rem;
         }
+
         nav a {
-            color: #00FF00;
             text-decoration: none;
-            font-size: 1.2rem;
-            margin: 0 20px;
-            position: relative;
-            z-index: 1;
+            color: #00FF00;
+            margin: 0 15px;
             transition: color 0.3s;
         }
+
         nav a:hover {
             color: #FF0000;
         }
 
         /* Hero Section */
         .hero {
-            background: url('https://via.placeholder.com/1600x900/111/00FF00') no-repeat center center/cover;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
             text-align: center;
-            position: relative;
+            background: #121212;
+            color: #00FF00;
+            padding: 0 20px;
         }
+
         .hero h2 {
-            font-size: 4rem;
+            font-size: 3rem;
+            font-weight: 700;
             margin-bottom: 20px;
-            animation: glitch 2s infinite;
         }
+
         .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            font-family: 'Courier New', monospace;
-            animation: fadeIn 3s ease-out;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.8;
         }
+
         .cta-button {
-            padding: 15px 30px;
-            background-color: #00FF00;
-            border: none;
-            border-radius: 5px;
+            padding: 10px 25px;
             font-size: 1.2rem;
-            color: #000;
+            border: 2px solid #00FF00;
+            background: transparent;
+            color: #00FF00;
             cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: background-color 0.3s, color 0.3s;
+            border-radius: 5px;
         }
+
         .cta-button:hover {
-            background-color: #FF0000;
-            transform: scale(1.1);
+            background-color: #00FF00;
+            color: #000;
         }
 
         /* About Section */
         .about {
             padding: 80px 20px;
             text-align: center;
-            background: #111;
+            background: #1e1e1e;
         }
+
         .about h2 {
             font-size: 2.5rem;
             margin-bottom: 20px;
             color: #00FF00;
         }
+
         .about p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
 
         /* Services Section */
         .services {
-            background: #222;
             padding: 80px 20px;
+            background: #121212;
+            text-align: center;
         }
+
         .services h2 {
             font-size: 2.5rem;
-            text-align: center;
             color: #00FF00;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
+
         .service-card {
-            background: #333;
-            width: 300px;
-            padding: 20px;
-            border-radius: 8px;
+            display: inline-block;
+            width: 260px;
             margin: 20px;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+            padding: 20px;
+            background: #222;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
         }
+
         .service-card h3 {
+            font-size: 1.5rem;
             color: #00FF00;
-            font-size: 1.6rem;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
+
         .service-card p {
-            color: #B5B5B5;
+            color: #bbb;
         }
+
         .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 0 40px rgba(0, 255, 0, 0.5);
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 255, 0, 0.4);
         }
 
         /* Contact Section */
         .contact {
-            background: #111;
+            background: #1e1e1e;
             padding: 80px 20px;
             text-align: center;
         }
+
         .contact h2 {
             font-size: 2.5rem;
             color: #00FF00;
             margin-bottom: 20px;
         }
+
         .contact form {
             display: flex;
             flex-direction: column;
             align-items: center;
         }
+
         .contact input, .contact textarea {
-            background: #222;
+            background: #333;
             color: #00FF00;
             border: 1px solid #00FF00;
             padding: 15px;
-            margin: 10px;
-            border-radius: 5px;
+            margin: 15px;
             width: 300px;
-            font-size: 1.1rem;
+            border-radius: 5px;
+            font-size: 1rem;
         }
+
         .contact input::placeholder, .contact textarea::placeholder {
-            color: #B5B5B5;
+            color: #888;
         }
+
         .contact button {
             background: #00FF00;
             padding: 15px 30px;
+            color: #000;
             border: none;
             border-radius: 5px;
             font-size: 1.2rem;
-            color: #000;
             cursor: pointer;
-            margin-top: 20px;
             transition: background-color 0.3s;
+            margin-top: 20px;
         }
+
         .contact button:hover {
-            background-color: #FF0000;
+            background: #FF0000;
         }
 
         /* Footer */
         footer {
-            background: #111;
+            background: #121212;
+            color: #00FF00;
             padding: 20px;
             text-align: center;
-            color: #00FF00;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
+            font-size: 1rem;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+        footer a {
+            text-decoration: none;
+            color: #00FF00;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #FF0000;
         }
     </style>
 </head>
@@ -250,8 +240,8 @@
 <!-- Hero Section -->
 <section id="home" class="hero">
     <div>
-        <h2>Transforming Digital Security</h2>
-        <p>Expert in Web, Mobile, API, Network, and Cloud Pentesting</p>
+        <h2>Cybersecurity Expert</h2>
+        <p>VAPT Specialist | Web, Mobile, API, Network & Cloud Penetration Testing</p>
         <button class="cta-button" onclick="window.location.href='#contact'">Get in Touch</button>
     </div>
 </section>
@@ -259,7 +249,7 @@
 <!-- About Section -->
 <section id="about" class="about">
     <h2>About Me</h2>
-    <p>I am a cybersecurity expert with extensive experience in Vulnerability Assessment and Penetration Testing (VAPT). I specialize in securing web applications, mobile apps, APIs, networks, and cloud infrastructures.</p>
+    <p>I am a cybersecurity expert with extensive experience in vulnerability assessments and penetration testing (VAPT). I specialize in securing web applications, mobile apps, APIs, networks, and cloud infrastructures to protect businesses from potential threats.</p>
 </section>
 
 <!-- Services Section -->
@@ -267,23 +257,23 @@
     <h2>Services</h2>
     <div class="service-card">
         <h3>Web Penetration Testing</h3>
-        <p>Identify vulnerabilities in web applications like XSS, SQL Injection, and more.</p>
+        <p>Test web applications for common vulnerabilities such as XSS, SQL injection, etc.</p>
     </div>
     <div class="service-card">
         <h3>Mobile Penetration Testing</h3>
-        <p>Test iOS and Android apps for security weaknesses.</p>
+        <p>Assess mobile applications for security flaws in both Android and iOS platforms.</p>
     </div>
     <div class="service-card">
         <h3>API Security Testing</h3>
-        <p>Assess API security and protect data exchanges.</p>
+        <p>Conduct thorough testing on your APIs to identify and mitigate risks.</p>
     </div>
     <div class="service-card">
         <h3>Network Penetration Testing</h3>
-        <p>Examine network infrastructures for vulnerabilities.</p>
+        <p>Perform tests to identify vulnerabilities within your network infrastructure.</p>
     </div>
     <div class="service-card">
-        <h3>Cloud Security Testing</h3>
-        <p>Ensure secure configurations in AWS, Azure, GCP, and more.</p>
+        <h3>Cloud Security</h3>
+        <p>Ensure the security of your cloud infrastructure across AWS, Azure, and GCP.</p>
     </div>
 </section>
 
@@ -298,13 +288,13 @@
     </form>
 </section>
 
-<!-- Footer -->
+<!-- Footer Section -->
 <footer>
     <p>&copy; 2024 Your Name | <a href="https://www.linkedin.com/in/your-profile" target="_blank">LinkedIn</a> | <a href="https://github.com/your-profile" target="_blank">GitHub</a></p>
 </footer>
 
 <script>
-    // Smooth Scroll
+    // Smooth Scroll for Navigation
     document.querySelectorAll('nav a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
