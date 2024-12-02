@@ -5,209 +5,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VAPT Portfolio</title>
     <style>
-        * {
+        body {
+            background-color: black;
+            color: #33FF00; /* Neon green text for terminal look */
+            font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-            color: #333;
         }
 
         header {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem;
-            text-align: center;
+            display: none; /* Hide header for terminal effect */
         }
 
-        nav ul {
-            list-style: none;
+        .terminal {
+            background-color: black;
+            width: 100%;
+            height: 100vh;
+            padding: 10px;
+            color: #33FF00;
+            font-size: 1.2rem;
+            white-space: pre-wrap;
+            overflow: hidden;
+        }
+
+        .line {
+            margin-bottom: 10px;
+        }
+
+        .input-line {
             display: flex;
-            justify-content: center;
         }
 
-        nav ul li {
-            margin: 0 15px;
+        .input-line span {
+            color: #33FF00;
         }
 
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
+        .input-field {
+            background: black;
+            border: none;
+            color: #33FF00;
+            outline: none;
+            width: 100%;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .terminal p {
+            margin: 0;
+        }
+
+        .command {
+            color: #33FF00;
             font-weight: bold;
         }
 
-        .hero {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 100px 20px;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-        }
-
-        section {
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        section p {
-            font-size: 1.2rem;
-        }
-
-        .services .service {
-            margin-bottom: 30px;
-        }
-
-        .services .service h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-
-        .contact form {
-            display: grid;
-            gap: 15px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .contact form label {
-            font-size: 1.1rem;
-        }
-
-        .contact form input, .contact form textarea {
-            padding: 10px;
-            font-size: 1rem;
-            width: 100%;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .contact form button {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
         footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 1rem;
-            position: fixed;
-            width: 100%;
+            position: absolute;
             bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: black;
+            color: #33FF00;
+            text-align: center;
+            padding: 5px;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <header>
-        <nav>
-            <div class="logo">VAPT Expert</div>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <h1>Welcome to My VAPT Portfolio</h1>
-        <p>Your trusted partner in vulnerability assessments and penetration testing.</p>
-    </section>
+<div class="terminal">
+    <div id="terminal-output"></div>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <h2>About Me</h2>
-        <p>I am a professional security expert specializing in vulnerability assessments and penetration testing (VAPT). With years of experience in identifying and mitigating security risks, I help businesses secure their systems and data from cyber threats.</p>
-    </section>
+    <div class="input-line">
+        <span class="command">vapt@portfolio:~$</span>
+        <input type="text" id="command-input" class="input-field" placeholder="Type command..." autofocus />
+    </div>
+</div>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <h2>Services</h2>
-        <div class="service">
-            <h3>Vulnerability Assessment</h3>
-            <p>Comprehensive vulnerability assessments to identify security flaws in your system.</p>
-        </div>
-        <div class="service">
-            <h3>Penetration Testing</h3>
-            <p>Real-world attack simulations to test your defenses and security posture.</p>
-        </div>
-        <div class="service">
-            <h3>Risk Assessment</h3>
-            <p>Detailed reports outlining potential risks and recommendations for mitigation.</p>
-        </div>
-    </section>
+<footer>
+    <p>&copy; 2024 VAPT Expert | All Rights Reserved</p>
+</footer>
 
-    <!-- Experience Section -->
-    <section id="experience" class="experience">
-        <h2>Experience</h2>
-        <ul>
-            <li>Lead Penetration Tester at SecureTech, 2020-2023</li>
-            <li>Vulnerability Assessment Specialist at CyberDefend, 2018-2020</li>
-            <li>Cybersecurity Consultant, Freelance, 2015-2018</li>
-        </ul>
-    </section>
+<script>
+    const terminalOutput = document.getElementById('terminal-output');
+    const inputField = document.getElementById('command-input');
+    const commands = {
+        help: `Available commands:\n
+        - about\n
+        - services\n
+        - experience\n
+        - contact\n
+        - clear\n`,
+        about: `About Me:\nI am a professional security expert specializing in vulnerability assessments and penetration testing (VAPT). With years of experience in identifying and mitigating security risks, I help businesses secure their systems and data from cyber threats.\n`,
+        services: `Services:\n
+        1. Vulnerability Assessment\n
+        2. Penetration Testing\n
+        3. Risk Assessment\n`,
+        experience: `Experience:\n
+        - Lead Penetration Tester at SecureTech, 2020-2023\n
+        - Vulnerability Assessment Specialist at CyberDefend, 2018-2020\n
+        - Cybersecurity Consultant, Freelance, 2015-2018\n`,
+        contact: `Contact:\n
+        - Email: vapt-expert@example.com\n
+        - Phone: +1 (555) 123-4567\n
+        - Website: www.vapt-portfolio.com\n`,
+        clear: () => terminalOutput.innerHTML = '', // Clear the terminal
+    };
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <h2>Contact</h2>
-        <form id="contact-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" rows="4" required></textarea>
-            <button type="submit">Send Message</button>
-        </form>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 VAPT Expert. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        // JavaScript to handle form submission (for demonstration purposes)
-
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-
-            if (name && email && message) {
-                alert(`Thank you for reaching out, ${name}! We'll get back to you soon.`);
-                document.getElementById('contact-form').reset(); // Reset form after submission
-            } else {
-                alert("Please fill out all fields.");
+    // Simulate typing effect
+    function typeText(text, callback) {
+        let index = 0;
+        const interval = setInterval(() => {
+            terminalOutput.innerHTML += text[index++];
+            terminalOutput.scrollTop = terminalOutput.scrollHeight; // Auto scroll down
+            if (index === text.length) {
+                clearInterval(interval);
+                callback();
             }
-        });
-    </script>
+        }, 30);
+    }
+
+    // Handle command input and execute
+    function handleCommand(command) {
+        if (commands[command]) {
+            typeText(commands[command], () => showPrompt());
+        } else {
+            typeText(`Command not found: ${command}`, () => showPrompt());
+        }
+    }
+
+    // Show the prompt after output
+    function showPrompt() {
+        const prompt = document.createElement('div');
+        prompt.classList.add('line');
+        prompt.innerHTML = `<span class="command">vapt@portfolio:~$</span> `;
+        terminalOutput.appendChild(prompt);
+
+        const newInput = document.createElement('input');
+        newInput.classList.add('input-field');
+        newInput.autofocus = true;
+        terminalOutput.appendChild(newInput);
+        newInput.addEventListener('keydown', handleInput);
+        newInput.focus();
+    }
+
+    // Handle input events
+    function handleInput(event) {
+        if (event.key === 'Enter') {
+            const command = event.target.value.trim().toLowerCase();
+            if (command !== '') {
+                terminalOutput.innerHTML += `<div class="line"><span class="command">vapt@portfolio:~$ ${command}</span></div>`;
+                handleCommand(command);
+            }
+            event.target.value = ''; // Clear the input field
+        }
+    }
+
+    // Initialize the terminal
+    showPrompt();
+
+</script>
 </body>
 </html>
