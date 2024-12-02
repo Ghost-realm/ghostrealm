@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Cybersecurity professional portfolio showcasing penetration testing, vulnerability assessments, and web application security expertise.">
-    <meta name="keywords" content="cybersecurity, penetration testing, vulnerability assessment, web security, IT security, ethical hacking">
+    <meta name="description" content="Cybersecurity professional portfolio showcasing expertise in penetration testing, web security, and network defense.">
+    <meta name="keywords" content="cybersecurity, penetration testing, vulnerability assessment, ethical hacking, security expert">
     <title>Your Name - Cybersecurity Portfolio</title>
     <link rel="icon" href="https://via.placeholder.com/32x32" type="image/png">
     <style>
@@ -18,11 +19,10 @@
 
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #121212;
-            color: #fff;
+            background-color: #F7F7F7;
+            color: #333;
             line-height: 1.6;
             overflow-x: hidden;
-            transition: background-color 0.3s ease;
         }
 
         h1, h2, h3, p {
@@ -31,21 +31,18 @@
 
         a {
             text-decoration: none;
-            color: #fff;
+            color: #333;
         }
 
         a:hover {
-            color: #4CAF50;
+            color: #007BFF;
         }
 
         /* Navigation */
         header {
-            position: sticky;
-            top: 0;
-            background-color: #1d1d1d;
+            background-color: #343A40;
             padding: 15px 0;
-            z-index: 100;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         nav {
@@ -66,20 +63,20 @@
         }
 
         nav ul li a {
-            color: #f4f4f4;
+            color: #F4F4F4;
             font-size: 18px;
             padding: 10px;
-            transition: color 0.3s;
+            transition: color 0.3s ease;
         }
 
         nav ul li a:hover {
-            color: #4CAF50;
+            color: #007BFF;
         }
 
         .logo {
             font-size: 24px;
             font-weight: bold;
-            color: #4CAF50;
+            color: #007BFF;
         }
 
         /* Hero Section */
@@ -100,7 +97,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
             z-index: 1;
         }
 
@@ -113,8 +110,6 @@
         .hero-content h1 {
             font-size: 3.5rem;
             margin-bottom: 20px;
-            letter-spacing: 2px;
-            animation: fadeIn 1.5s ease-out;
         }
 
         .hero-content p {
@@ -131,126 +126,98 @@
         /* About Section */
         #about {
             padding: 80px 20px;
-            background-color: #222;
+            background-color: #fff;
             text-align: center;
         }
 
         #about h2 {
             font-size: 2.5rem;
+            color: #007BFF;
             margin-bottom: 30px;
-            color: #4CAF50;
-            animation: slideUp 1.5s ease-out;
         }
 
         #about p {
             font-size: 1.1rem;
             max-width: 800px;
             margin: 0 auto;
-            animation: fadeInText 2s ease-out;
         }
 
-        @keyframes slideUp {
-            0% { transform: translateY(50px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-
-        @keyframes fadeInText {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        .icons-container {
+        .skills {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
             margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
         }
 
-        .icon-box {
-            background-color: #333;
-            padding: 30px;
-            border-radius: 50%;
-            width: 120px;
-            height: 120px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #4CAF50;
-            font-size: 2rem;
-            transition: transform 0.3s ease;
+        .skill {
+            background-color: #007BFF;
+            color: white;
+            border-radius: 10px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
         }
 
-        .icon-box:hover {
-            transform: scale(1.1);
-            background-color: #444;
-        }
-
-        /* Social Icons */
-        .social-icons a {
-            color: #fff;
-            font-size: 2rem;
-            margin: 0 15px;
-            transition: color 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            color: #4CAF50;
+        .skill:hover {
+            background-color: #0056b3;
         }
 
         /* Projects Section */
         #projects {
             padding: 80px 20px;
-            background-color: #333;
+            background-color: #F1F1F1;
         }
 
         #projects h2 {
             font-size: 2.5rem;
+            color: #007BFF;
             text-align: center;
-            color: #4CAF50;
             margin-bottom: 40px;
         }
 
         .project-cards {
             display: flex;
             flex-wrap: wrap;
-            gap: 30px;
             justify-content: center;
+            gap: 30px;
         }
 
         .project-card {
-            background-color: #444;
-            padding: 30px;
+            background-color: #fff;
+            padding: 20px;
             border-radius: 10px;
             width: 300px;
             text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .project-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .project-card h3 {
             font-size: 1.8rem;
-            color: #4CAF50;
+            color: #007BFF;
             margin-bottom: 20px;
         }
 
         .project-card p {
             font-size: 1.1rem;
-            color: #bbb;
+            color: #333;
         }
 
         /* Contact Section */
         #contact {
             padding: 80px 20px;
-            background-color: #121212;
+            background-color: #fff;
         }
 
         #contact h2 {
             font-size: 2.5rem;
-            color: #4CAF50;
+            color: #007BFF;
             text-align: center;
             margin-bottom: 40px;
         }
@@ -266,25 +233,27 @@
             display: block;
         }
 
-        .contact-form input, .contact-form textarea {
+        .contact-form input,
+        .contact-form textarea {
             width: 100%;
             padding: 15px;
             margin-bottom: 20px;
-            background-color: #222;
-            border: 1px solid #444;
-            color: #f4f4f4;
+            background-color: #F7F7F7;
+            border: 1px solid #ccc;
+            color: #333;
             font-size: 1.1rem;
             border-radius: 8px;
             transition: background-color 0.3s ease;
         }
 
-        .contact-form input:focus, .contact-form textarea:focus {
-            background-color: #333;
-            border-color: #4CAF50;
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            background-color: #E9ECEF;
+            border-color: #007BFF;
         }
 
         .contact-form button {
-            background-color: #4CAF50;
+            background-color: #007BFF;
             color: white;
             padding: 15px 30px;
             border: none;
@@ -295,12 +264,12 @@
         }
 
         .contact-form button:hover {
-            background-color: #45a049;
+            background-color: #0056b3;
         }
 
         /* Footer */
         footer {
-            background-color: #1d1d1d;
+            background-color: #343A40;
             color: #fff;
             padding: 20px;
             text-align: center;
@@ -320,17 +289,22 @@
                 font-size: 1.1rem;
             }
 
-            .icons-container {
+            .skills {
                 flex-direction: column;
-                gap: 15px;
+                gap: 20px;
             }
 
             .project-cards {
                 flex-direction: column;
             }
+
+            .project-card {
+                width: 90%;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -347,23 +321,18 @@
 
     <section id="home">
         <div class="hero-content">
-            <h1>Welcome to My Cybersecurity Portfolio</h1>
-            <p>Passionate about securing digital assets, identifying vulnerabilities, and fortifying systems.</p>
+            <h1>Protecting Digital Worlds</h1>
+            <p>Building secure, resilient, and safe digital environments through innovative cybersecurity practices.</p>
         </div>
     </section>
 
     <section id="about">
         <h2>About Me</h2>
-        <p>I am a dedicated cybersecurity professional with expertise in penetration testing, vulnerability assessment, and web application security. My goal is to protect digital systems from malicious threats and ensure data integrity.</p>
-        <div class="icons-container">
-            <div class="icon-box"><span>🔒</span></div>
-            <div class="icon-box"><span>💻</span></div>
-            <div class="icon-box"><span>🛡️</span></div>
-        </div>
-        <div class="social-icons">
-            <a href="https://www.linkedin.com" target="_blank">🔗</a>
-            <a href="https://github.com" target="_blank">🐙</a>
-            <a href="https://twitter.com" target="_blank">🐦</a>
+        <p>I am a passionate cybersecurity professional focused on penetration testing, web application security, and network defense. My goal is to identify vulnerabilities, assess risks, and implement solutions to keep organizations safe from digital threats.</p>
+        <div class="skills">
+            <div class="skill">Penetration Testing</div>
+            <div class="skill">Vulnerability Assessment</div>
+            <div class="skill">Ethical Hacking</div>
         </div>
     </section>
 
@@ -371,49 +340,37 @@
         <h2>My Projects</h2>
         <div class="project-cards">
             <div class="project-card">
-                <h3>Penetration Testing</h3>
-                <p>Conducted comprehensive vulnerability assessments and penetration testing for a variety of organizations, helping them identify weaknesses in their security infrastructure.</p>
+                <h3>Vulnerability Assessment</h3>
+                <p>Identified and mitigated risks in various web applications by performing detailed vulnerability assessments and penetration tests.</p>
             </div>
             <div class="project-card">
                 <h3>Web Application Security</h3>
-                <p>Secured web applications by performing code reviews, vulnerability assessments, and penetration testing to ensure protection from common web attacks.</p>
+                <p>Conducted security audits for web applications, including code reviews, vulnerability assessments, and penetration testing.</p>
             </div>
             <div class="project-card">
-                <h3>Network Security</h3>
-                <p>Enhanced network security by configuring firewalls, conducting penetration tests, and ensuring compliance with security protocols to protect internal systems.</p>
+                <h3>Network Defense</h3>
+                <p>Configured firewalls, intrusion detection systems, and other network security tools to secure company networks.</p>
             </div>
         </div>
     </section>
 
     <section id="contact">
         <h2>Contact Me</h2>
-        <form class="contact-form" id="contact-form">
+        <form class="contact-form">
             <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" required placeholder="Enter your name">
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
             <label for="email">Your Email</label>
-            <input type="email" id="email" name="email" required placeholder="Enter your email">
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
             <label for="message">Your Message</label>
-            <textarea id="message" name="message" required placeholder="Your message"></textarea>
+            <textarea id="message" name="message" placeholder="Your message" required></textarea>
             <button type="submit">Send Message</button>
         </form>
     </section>
 
     <footer>
-        <p>&copy; 2024 CyberSec Pro | All rights reserved.</p>
+        <p>&copy; 2024 CyberSec Pro. All rights reserved.</p>
     </footer>
 
-    <script>
-        // Form validation script
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-            
-            if (name === '' || email === '' || message === '') {
-                alert("Please fill in all the fields.");
-                event.preventDefault();
-            }
-        });
-    </script>
 </body>
+
 </html>
