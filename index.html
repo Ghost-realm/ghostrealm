@@ -6,30 +6,27 @@
     <title>VAPT Portfolio</title>
     <style>
         body {
-            background-color: black;
-            color: #33FF00; /* Neon green text for terminal look */
+            background-color: #0e0e0e; /* Dark background for a futuristic look */
+            color: #00FF41; /* Neon green text */
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
         }
 
-        header {
-            display: none; /* Hide header for terminal effect */
-        }
-
         .terminal {
-            background-color: black;
+            background-color: #0e0e0e;
             width: 100%;
             height: 100vh;
-            padding: 10px;
-            color: #33FF00;
+            padding: 20px;
+            color: #00FF41;
             font-size: 1.2rem;
             white-space: pre-wrap;
             overflow: hidden;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         .line {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .input-line {
@@ -37,31 +34,18 @@
         }
 
         .input-line span {
-            color: #33FF00;
+            color: #00FF41;
         }
 
         .input-field {
-            background: black;
+            background: #0e0e0e;
             border: none;
-            color: #33FF00;
+            color: #00FF41;
             outline: none;
             width: 100%;
-            font-family: 'Courier New', Courier, monospace;
             font-size: 1.2rem;
             padding: 5px;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .terminal p {
-            margin: 0;
-        }
-
-        .command {
-            color: #33FF00;
-            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         footer {
@@ -69,11 +53,33 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: black;
-            color: #33FF00;
+            background-color: #0e0e0e;
+            color: #00FF41;
             text-align: center;
-            padding: 5px;
+            padding: 10px;
             font-size: 0.9rem;
+        }
+
+        .command {
+            color: #00FF41;
+            font-weight: bold;
+        }
+
+        .futuristic-button {
+            color: #00FF41;
+            border: 2px solid #00FF41;
+            background: transparent;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            font-family: 'Courier New', Courier, monospace;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .futuristic-button:hover {
+            background-color: #00FF41;
+            color: #0e0e0e;
         }
     </style>
 </head>
@@ -118,7 +124,7 @@
         clear: () => terminalOutput.innerHTML = '', // Clear the terminal
     };
 
-    // Simulate typing effect
+    // Typing effect for futuristic feel
     function typeText(text, callback) {
         let index = 0;
         const interval = setInterval(() => {
@@ -128,7 +134,7 @@
                 clearInterval(interval);
                 callback();
             }
-        }, 30);
+        }, 50);
     }
 
     // Handle command input and execute
