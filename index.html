@@ -3,219 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VAPT Portfolio</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your Name - Portfolio</title>
     <style>
+        /* General Styles */
         body {
-            background-color: #0e0e0e; /* Dark background for futuristic look */
-            color: #00FF41; /* Neon green text */
-            font-family: 'Courier New', Courier, monospace;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            overflow: hidden;
-        }
-
-        /* Terminal-like background animation */
-        .terminal {
-            background-color: #0e0e0e;
-            width: 100%;
-            height: 100vh;
-            padding: 20px;
-            color: #00FF41;
-            font-size: 1.2rem;
-            white-space: pre-wrap;
-            overflow: hidden;
-            font-family: 'Courier New', Courier, monospace;
-            position: relative;
             box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
+            background-color: #f4f4f4;
+            color: #333;
         }
 
-        /* Adding floating animation to the terminal output */
-        .line {
+        h1, h2, h3 {
+            font-weight: bold;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        /* Navigation */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            font-size: 18px;
+            padding: 5px 15px;
+        }
+
+        nav ul li a:hover {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        /* Home Section */
+        #home {
+            background-color: #4CAF50;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+        }
+
+        /* About Section */
+        #about {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        #about h2 {
+            font-size: 2em;
+        }
+
+        /* Projects Section */
+        #projects {
+            background-color: #fff;
+            padding: 50px 20px;
+        }
+
+        #projects h2 {
+            font-size: 2em;
+            text-align: center;
+        }
+
+        .project-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .project {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 15px;
+            border-radius: 8px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .project h3 {
+            font-size: 1.5em;
+            color: #4CAF50;
+        }
+
+        /* Contact Section */
+        #contact {
+            background-color: #f4f4f4;
+            padding: 50px 20px;
+        }
+
+        #contact h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
             margin-bottom: 15px;
-            animation: float 2s ease-in-out infinite;
+            border-radius: 5px;
+            border: 1px solid #ddd;
         }
 
-        /* Glowing text effect */
-        .glow {
-            animation: glow 1.5s ease-in-out infinite alternate;
-        }
-
-        /* Floating command input and output */
-        @keyframes float {
-            0% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0); }
-        }
-
-        /* Neon glow effect for commands */
-        @keyframes glow {
-            0% { text-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41, 0 0 30px #00FF41; }
-            100% { text-shadow: 0 0 20px #00FF41, 0 0 40px #00FF41, 0 0 50px #00FF41; }
-        }
-
-        /* Input field animation */
-        .input-line {
-            display: flex;
-            align-items: center;
-            animation: input-fade 1.5s ease-in-out;
-        }
-
-        @keyframes input-fade {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        .input-field {
-            background: #0e0e0e;
+        form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
             border: none;
-            color: #00FF41;
-            outline: none;
-            width: 100%;
-            font-size: 1.2rem;
-            padding: 5px;
-            font-family: 'Courier New', Courier, monospace;
-            border-bottom: 2px solid #00FF41;
-            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        .input-field:focus {
-            background-color: #1a1a1a;
-            box-shadow: 0 0 5px #00FF41;
+        form button:hover {
+            background-color: #45a049;
         }
 
+        /* Footer */
         footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #0e0e0e;
-            color: #00FF41;
+            background-color: #333;
+            color: white;
             text-align: center;
             padding: 10px;
-            font-size: 0.9rem;
-        }
-
-        .command {
-            color: #00FF41;
-            font-weight: bold;
-            font-size: 1.4rem;
-            animation: glow 1.5s ease-in-out infinite alternate;
-        }
-
-        .futuristic-button {
-            color: #00FF41;
-            border: 2px solid #00FF41;
-            background: transparent;
-            padding: 10px 20px;
-            text-transform: uppercase;
-            font-family: 'Courier New', Courier, monospace;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .futuristic-button:hover {
-            background-color: #00FF41;
-            color: #0e0e0e;
-            transform: scale(1.1);
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
 
-<div class="terminal">
-    <div id="terminal-output"></div>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <div class="input-line">
-        <span class="command">vapt@portfolio:~$</span>
-        <input type="text" id="command-input" class="input-field" placeholder="Type command..." autofocus />
-    </div>
-</div>
+    <!-- Home Section -->
+    <section id="home">
+        <div class="hero">
+            <h1>Welcome to My Portfolio</h1>
+            <p>Hi, I'm [Your Name]. A Web Developer & Designer.</p>
+        </div>
+    </section>
 
-<footer>
-    <p>&copy; 2024 VAPT Expert | All Rights Reserved</p>
-</footer>
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Hello! I am a passionate web developer with a focus on creating beautiful and functional websites. I specialize in front-end development and enjoy designing user interfaces.</p>
+    </section>
 
-<script>
-    const terminalOutput = document.getElementById('terminal-output');
-    const inputField = document.getElementById('command-input');
-    const commands = {
-        help: `Available commands:\n
-        - about\n
-        - services\n
-        - experience\n
-        - contact\n
-        - clear\n`,
-        about: `About Me:\nI am a professional security expert specializing in vulnerability assessments and penetration testing (VAPT). With years of experience in identifying and mitigating security risks, I help businesses secure their systems and data from cyber threats.\n`,
-        services: `Services:\n
-        1. Vulnerability Assessment\n
-        2. Penetration Testing\n
-        3. Risk Assessment\n`,
-        experience: `Experience:\n
-        - Lead Penetration Tester at SecureTech, 2020-2023\n
-        - Vulnerability Assessment Specialist at CyberDefend, 2018-2020\n
-        - Cybersecurity Consultant, Freelance, 2015-2018\n`,
-        contact: `Contact:\n
-        - Email: vapt-expert@example.com\n
-        - Phone: +1 (555) 123-4567\n
-        - Website: www.vapt-portfolio.com\n`,
-        clear: () => terminalOutput.innerHTML = '', // Clear the terminal
-    };
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="project-container">
+            <div class="project">
+                <h3>Project 1</h3>
+                <p>Description of your first project goes here.</p>
+            </div>
+            <div class="project">
+                <h3>Project 2</h3>
+                <p>Description of your second project goes here.</p>
+            </div>
+            <div class="project">
+                <h3>Project 3</h3>
+                <p>Description of your third project goes here.</p>
+            </div>
+        </div>
+    </section>
 
-    // Typing effect for futuristic feel
-    function typeText(text, callback) {
-        let index = 0;
-        const interval = setInterval(() => {
-            terminalOutput.innerHTML += text[index++];
-            terminalOutput.scrollTop = terminalOutput.scrollHeight; // Auto scroll down
-            if (index === text.length) {
-                clearInterval(interval);
-                callback();
-            }
-        }, 50);
-    }
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <form id="contact-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+            
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
 
-    // Handle command input and execute
-    function handleCommand(command) {
-        if (commands[command]) {
-            typeText(commands[command], () => showPrompt());
-        } else {
-            typeText(`Command not found: ${command}`, () => showPrompt());
-        }
-    }
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 [Your Name]. All Rights Reserved.</p>
+    </footer>
 
-    // Show the prompt after output
-    function showPrompt() {
-        const prompt = document.createElement('div');
-        prompt.classList.add('line');
-        prompt.innerHTML = `<span class="command">vapt@portfolio:~$</span> `;
-        terminalOutput.appendChild(prompt);
+    <script>
+        // Contact Form Submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevents the form from refreshing the page
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
 
-        const newInput = document.createElement('input');
-        newInput.classList.add('input-field');
-        newInput.autofocus = true;
-        terminalOutput.appendChild(newInput);
-        newInput.addEventListener('keydown', handleInput);
-        newInput.focus();
-    }
+            // Here, you can add AJAX or other ways to send this data to your backend.
+            console.log('Form Submitted:', { name, email, message });
 
-    // Handle input events
-    function handleInput(event) {
-        if (event.key === 'Enter') {
-            const command = event.target.value.trim().toLowerCase();
-            if (command !== '') {
-                terminalOutput.innerHTML += `<div class="line"><span class="command">vapt@portfolio:~$ ${command}</span></div>`;
-                handleCommand(command);
-            }
-            event.target.value = ''; // Clear the input field
-        }
-    }
-
-    // Initialize the terminal
-    showPrompt();
-
-</script>
+            // Optionally, show a success message to the user
+            alert('Thank you for your message, ' + name + '!');
+        });
+    </script>
 </body>
 </html>
