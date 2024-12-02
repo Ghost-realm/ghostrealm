@@ -4,22 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Cybersecurity Professional | VAPT Expert | Web, Mobile, API, Network, and Cloud Penetration Testing">
-    <title Ghost realm! - Cybersecurity Expert</title>
+    <title>Your Name - Cybersecurity Expert</title>
     <style>
+        /* Reset some styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #121212;
-            color: #fff;
-            line-height: 1.6;
+            font-family: 'Courier New', monospace;
+            background: #000;
+            color: #0f0;
             overflow-x: hidden;
+            line-height: 1.6;
+            letter-spacing: 1px;
         }
 
-        /* Header Styles */
+        /* Glitch Text Animation */
+        @keyframes glitch {
+            0% {
+                transform: translate(2px, 2px);
+                text-shadow: 1px 1px 0 rgba(0,0,0,0.2), -1px -1px 0 rgba(0,0,0,0.2);
+            }
+            20% {
+                transform: translate(-2px, -2px);
+                text-shadow: 1px 1px 0 rgba(0,0,0,0.2), -1px -1px 0 rgba(0,0,0,0.2);
+            }
+            40% {
+                transform: translate(2px, 2px);
+                text-shadow: 1px 1px 0 rgba(0,0,0,0.2), -1px -1px 0 rgba(0,0,0,0.2);
+            }
+            60% {
+                transform: translate(-2px, -2px);
+                text-shadow: 1px 1px 0 rgba(0,0,0,0.2), -1px -1px 0 rgba(0,0,0,0.2);
+            }
+            80% {
+                transform: translate(2px, 2px);
+                text-shadow: 1px 1px 0 rgba(0,0,0,0.2), -1px -1px 0 rgba(0,0,0,0.2);
+            }
+            100% {
+                transform: translate(0, 0);
+                text-shadow: 1px 1px 0 rgba(0,0,0,0.2), -1px -1px 0 rgba(0,0,0,0.2);
+            }
+        }
+
+        /* Header and Navigation */
         header {
             background: #111;
             padding: 20px;
@@ -27,125 +58,179 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
         header h1 {
-            color: #00d4ff;
+            color: #00FF00;
             font-size: 2.5rem;
-            letter-spacing: 1.5px;
             text-transform: uppercase;
             text-align: center;
+            animation: glitch 1s infinite;
         }
         nav {
             text-align: center;
-            margin-top: 10px;
+            margin-top: 20px;
         }
         nav a {
-            margin: 0 15px;
-            color: #fff;
+            color: #00FF00;
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            margin: 0 20px;
+            position: relative;
+            z-index: 1;
             transition: color 0.3s;
         }
         nav a:hover {
-            color: #00d4ff;
+            color: #FF0000;
         }
 
         /* Hero Section */
         .hero {
-            background: url('https://via.placeholder.com/1600x900/111/00d4ff') no-repeat center center/cover;
+            background: url('https://via.placeholder.com/1600x900/111/00FF00') no-repeat center center/cover;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
             color: white;
+            text-align: center;
+            position: relative;
         }
         .hero h2 {
             font-size: 4rem;
             margin-bottom: 20px;
-            animation: fadeIn 2s ease-out;
+            animation: glitch 2s infinite;
         }
         .hero p {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
             animation: fadeIn 3s ease-out;
         }
         .cta-button {
-            padding: 12px 25px;
-            background-color: #00d4ff;
+            padding: 15px 30px;
+            background-color: #00FF00;
             border: none;
             border-radius: 5px;
             font-size: 1.2rem;
             color: #000;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
         .cta-button:hover {
-            background-color: #00b0cc;
+            background-color: #FF0000;
+            transform: scale(1.1);
         }
 
         /* About Section */
-        .about, .services, .portfolio, .contact {
+        .about {
+            padding: 80px 20px;
+            text-align: center;
+            background: #111;
+        }
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #00FF00;
+        }
+        .about p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Services Section */
+        .services {
+            background: #222;
+            padding: 80px 20px;
+        }
+        .services h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            color: #00FF00;
+            margin-bottom: 30px;
+        }
+        .service-card {
+            background: #333;
+            width: 300px;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .service-card h3 {
+            color: #00FF00;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+        .service-card p {
+            color: #B5B5B5;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 40px rgba(0, 255, 0, 0.5);
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #111;
             padding: 80px 20px;
             text-align: center;
         }
-        .about h2, .services h2, .portfolio h2, .contact h2 {
+        .contact h2 {
             font-size: 2.5rem;
+            color: #00FF00;
             margin-bottom: 20px;
         }
-        .about p, .services p, .contact p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        /* Service Cards */
-        .services .card-container {
+        .contact form {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
         }
-        .services .card {
+        .contact input, .contact textarea {
             background: #222;
-            padding: 20px;
-            border-radius: 8px;
-            width: 250px;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            color: #00FF00;
+            border: 1px solid #00FF00;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            width: 300px;
+            font-size: 1.1rem;
         }
-        .services .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        .contact input::placeholder, .contact textarea::placeholder {
+            color: #B5B5B5;
         }
-        .services .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
+        .contact button {
+            background: #00FF00;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            color: #000;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
         }
-        .services .card p {
-            font-size: 1rem;
+        .contact button:hover {
+            background-color: #FF0000;
         }
 
         /* Footer */
         footer {
             background: #111;
-            color: #fff;
             padding: 20px;
             text-align: center;
-            position: fixed;
+            color: #00FF00;
+            position: absolute;
             bottom: 0;
             width: 100%;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
         }
 
         /* Animations */
         @keyframes fadeIn {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
@@ -158,7 +243,6 @@
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
         <a href="#contact">Contact</a>
     </nav>
 </header>
@@ -175,55 +259,46 @@
 <!-- About Section -->
 <section id="about" class="about">
     <h2>About Me</h2>
-    <p>I’m a cybersecurity expert specializing in Vulnerability Assessment and Penetration Testing (VAPT). I work to secure web applications, mobile apps, APIs, networks, and cloud infrastructures by identifying potential vulnerabilities and securing them to prevent breaches.</p>
+    <p>I am a cybersecurity expert with extensive experience in Vulnerability Assessment and Penetration Testing (VAPT). I specialize in securing web applications, mobile apps, APIs, networks, and cloud infrastructures.</p>
 </section>
 
 <!-- Services Section -->
 <section id="services" class="services">
     <h2>Services</h2>
-    <div class="card-container">
-        <div class="card">
-            <h3>Web Penetration Testing</h3>
-            <p>Assessing web applications for security weaknesses like XSS, SQL Injection, and more.</p>
-        </div>
-        <div class="card">
-            <h3>Mobile Penetration Testing</h3>
-            <p>Ensuring the security of mobile applications across iOS and Android platforms.</p>
-        </div>
-        <div class="card">
-            <h3>API Security Testing</h3>
-            <p>Testing APIs for security vulnerabilities to protect data transmission.</p>
-        </div>
-        <div class="card">
-            <h3>Network Penetration Testing</h3>
-            <p>Identifying weaknesses in network infrastructures to prevent attacks.</p>
-        </div>
-        <div class="card">
-            <h3>Cloud Security Testing</h3>
-            <p>Securing cloud environments (AWS, Azure, GCP) from vulnerabilities.</p>
-        </div>
+    <div class="service-card">
+        <h3>Web Penetration Testing</h3>
+        <p>Identify vulnerabilities in web applications like XSS, SQL Injection, and more.</p>
     </div>
-</section>
-
-<!-- Portfolio Section -->
-<section id="portfolio" class="portfolio">
-    <h2>Portfolio</h2>
-    <p>Here are some of my past projects where I have successfully identified vulnerabilities and helped secure applications and networks. (Details coming soon.)</p>
+    <div class="service-card">
+        <h3>Mobile Penetration Testing</h3>
+        <p>Test iOS and Android apps for security weaknesses.</p>
+    </div>
+    <div class="service-card">
+        <h3>API Security Testing</h3>
+        <p>Assess API security and protect data exchanges.</p>
+    </div>
+    <div class="service-card">
+        <h3>Network Penetration Testing</h3>
+        <p>Examine network infrastructures for vulnerabilities.</p>
+    </div>
+    <div class="service-card">
+        <h3>Cloud Security Testing</h3>
+        <p>Ensure secure configurations in AWS, Azure, GCP, and more.</p>
+    </div>
 </section>
 
 <!-- Contact Section -->
 <section id="contact" class="contact">
     <h2>Contact Me</h2>
-    <p>If you're interested in working together, feel free to reach out!</p>
     <form>
         <input type="text" placeholder="Your Name" required><br>
         <input type="email" placeholder="Your Email" required><br>
         <textarea placeholder="Your Message" required></textarea><br>
-        <button class="cta-button" type="submit">Send Message</button>
+        <button type="submit">Send Message</button>
     </form>
 </section>
 
-<!-- Footer Section -->
+<!-- Footer -->
 <footer>
     <p>&copy; 2024 Your Name | <a href="https://www.linkedin.com/in/your-profile" target="_blank">LinkedIn</a> | <a href="https://github.com/your-profile" target="_blank">GitHub</a></p>
 </footer>
