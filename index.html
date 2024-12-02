@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Cybersecurity professional portfolio showcasing penetration testing, vulnerability assessments, and web application security expertise.">
+    <meta name="keywords" content="cybersecurity, penetration testing, vulnerability assessment, web security, IT security, ethical hacking">
     <title>Your Name - Cybersecurity Portfolio</title>
+    <link rel="icon" href="https://via.placeholder.com/32x32" type="image/png">
     <style>
         /* Reset CSS */
         * {
@@ -182,6 +185,18 @@
             background-color: #444;
         }
 
+        /* Social Icons */
+        .social-icons a {
+            color: #fff;
+            font-size: 2rem;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #4CAF50;
+        }
+
         /* Projects Section */
         #projects {
             padding: 80px 20px;
@@ -306,21 +321,18 @@
             }
 
             .icons-container {
-                flex-wrap: wrap;
-                justify-content: space-evenly;
+                flex-direction: column;
+                gap: 15px;
             }
 
             .project-cards {
                 flex-direction: column;
-                align-items: center;
             }
         }
-
     </style>
 </head>
 <body>
 
-    <!-- Header & Navigation -->
     <header>
         <nav>
             <div class="logo">CyberSec Pro</div>
@@ -333,67 +345,75 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section id="home">
         <div class="hero-content">
             <h1>Welcome to My Cybersecurity Portfolio</h1>
-            <p>Passionate about securing systems, finding vulnerabilities, and protecting organizations from cyber threats.</p>
+            <p>Passionate about securing digital assets, identifying vulnerabilities, and fortifying systems.</p>
         </div>
     </section>
 
-    <!-- About Section -->
     <section id="about">
         <h2>About Me</h2>
-        <p>I specialize in penetration testing, vulnerability assessments, and securing complex IT infrastructures. My mission is to safeguard your data and systems from malicious threats.</p>
+        <p>I am a dedicated cybersecurity professional with expertise in penetration testing, vulnerability assessment, and web application security. My goal is to protect digital systems from malicious threats and ensure data integrity.</p>
         <div class="icons-container">
-            <div class="icon-box">🛡️</div>
-            <div class="icon-box">🔐</div>
-            <div class="icon-box">💻</div>
+            <div class="icon-box"><span>🔒</span></div>
+            <div class="icon-box"><span>💻</span></div>
+            <div class="icon-box"><span>🛡️</span></div>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com" target="_blank">🔗</a>
+            <a href="https://github.com" target="_blank">🐙</a>
+            <a href="https://twitter.com" target="_blank">🐦</a>
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects">
         <h2>My Projects</h2>
         <div class="project-cards">
             <div class="project-card">
-                <h3>Vulnerability Assessment</h3>
-                <p>Conducted a comprehensive vulnerability scan of an enterprise network and provided remediation strategies.</p>
-            </div>
-            <div class="project-card">
                 <h3>Penetration Testing</h3>
-                <p>Identified critical vulnerabilities in a banking app through extensive penetration testing.</p>
+                <p>Conducted comprehensive vulnerability assessments and penetration testing for a variety of organizations, helping them identify weaknesses in their security infrastructure.</p>
             </div>
             <div class="project-card">
                 <h3>Web Application Security</h3>
-                <p>Performed a security audit for a major e-commerce platform and eliminated several exploitable flaws.</p>
+                <p>Secured web applications by performing code reviews, vulnerability assessments, and penetration testing to ensure protection from common web attacks.</p>
+            </div>
+            <div class="project-card">
+                <h3>Network Security</h3>
+                <p>Enhanced network security by configuring firewalls, conducting penetration tests, and ensuring compliance with security protocols to protect internal systems.</p>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section id="contact">
         <h2>Contact Me</h2>
-        <div class="contact-form">
-            <form>
-                <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" required>
-
-                <label for="email">Your Email</label>
-                <input type="email" id="email" name="email" required>
-
-                <label for="message">Your Message</label>
-                <textarea id="message" name="message" required></textarea>
-
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
+        <form class="contact-form" id="contact-form">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your name">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" required placeholder="Your message"></textarea>
+            <button type="submit">Send Message</button>
+        </form>
     </section>
 
-    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 CyberSec Pro. All Rights Reserved.</p>
+        <p>&copy; 2024 CyberSec Pro | All rights reserved.</p>
     </footer>
 
+    <script>
+        // Form validation script
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            if (name === '' || email === '' || message === '') {
+                alert("Please fill in all the fields.");
+                event.preventDefault();
+            }
+        });
+    </script>
 </body>
 </html>
