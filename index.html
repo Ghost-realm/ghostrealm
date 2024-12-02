@@ -6,13 +6,15 @@
     <title>VAPT Portfolio</title>
     <style>
         body {
-            background-color: #0e0e0e; /* Dark background for a futuristic look */
+            background-color: #0e0e0e; /* Dark background for futuristic look */
             color: #00FF41; /* Neon green text */
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
+            overflow: hidden;
         }
 
+        /* Terminal-like background animation */
         .terminal {
             background-color: #0e0e0e;
             width: 100%;
@@ -23,18 +25,46 @@
             white-space: pre-wrap;
             overflow: hidden;
             font-family: 'Courier New', Courier, monospace;
+            position: relative;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
         }
 
+        /* Adding floating animation to the terminal output */
         .line {
             margin-bottom: 15px;
+            animation: float 2s ease-in-out infinite;
         }
 
+        /* Glowing text effect */
+        .glow {
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+
+        /* Floating command input and output */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Neon glow effect for commands */
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #00FF41, 0 0 20px #00FF41, 0 0 30px #00FF41; }
+            100% { text-shadow: 0 0 20px #00FF41, 0 0 40px #00FF41, 0 0 50px #00FF41; }
+        }
+
+        /* Input field animation */
         .input-line {
             display: flex;
+            align-items: center;
+            animation: input-fade 1.5s ease-in-out;
         }
 
-        .input-line span {
-            color: #00FF41;
+        @keyframes input-fade {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         .input-field {
@@ -46,6 +76,13 @@
             font-size: 1.2rem;
             padding: 5px;
             font-family: 'Courier New', Courier, monospace;
+            border-bottom: 2px solid #00FF41;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .input-field:focus {
+            background-color: #1a1a1a;
+            box-shadow: 0 0 5px #00FF41;
         }
 
         footer {
@@ -63,6 +100,8 @@
         .command {
             color: #00FF41;
             font-weight: bold;
+            font-size: 1.4rem;
+            animation: glow 1.5s ease-in-out infinite alternate;
         }
 
         .futuristic-button {
@@ -80,6 +119,7 @@
         .futuristic-button:hover {
             background-color: #00FF41;
             color: #0e0e0e;
+            transform: scale(1.1);
         }
     </style>
 </head>
